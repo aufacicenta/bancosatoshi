@@ -1,7 +1,8 @@
 from aws_cdk import (
     core as cdk,
     aws_ec2 as ec2,
-    aws_rds as rds
+    aws_rds as rds,
+    aws_eks as eks
 )
 
 # For consistency with other languages, `cdk` is the preferred import name for
@@ -25,11 +26,25 @@ class InfraStack(cdk.Stack):
                       nat_gateway_provider=ec2.NatProvider.instance(instance_type=ec2.InstanceType('t3a.nano')))
 
         ####################
+        # Kubernetes Cluster
+        ####################
+
+        # EKS Cluster
+        k8s = eks.Cluster(self, 'k8s',
+            version=eks.KubernetesVersion.V1_20,
+            cluster_name='eks-cluster',
+            default_capacity=1,
+            default_capacity_instance=ec2.InstanceType('t3a.medium'),
+            vpc=vpc
+        )
+
+        ####################
         # MySQL
         ####################
 
+        # Security Group
         sg_aurora = ec2.SecurityGroup(self, 'sgAurora', vpc=vpc, security_group_name= 'AuroraMysql')
-        #sg_aurora.add_ingress_rule(cluster.cluster_security_group, ec2.Port.tcp(3306))
+        sg_aurora.add_ingress_rule(k8s.cluster_security_group, ec2.Port.tcp(3306))
 
         # Create cluster
         db = rds.DatabaseCluster(self, 'database',
