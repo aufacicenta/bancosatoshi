@@ -1,6 +1,7 @@
 from aws_cdk import (
     core as cdk,
-    aws_ec2 as ec2
+    aws_ec2 as ec2,
+    aws_rds as rds
 )
 
 # For consistency with other languages, `cdk` is the preferred import name for
@@ -22,3 +23,22 @@ class InfraStack(cdk.Stack):
         vpc = ec2.Vpc(self, 'vpc',
                       max_azs=2,
                       nat_gateway_provider=ec2.NatProvider.instance(instance_type=ec2.InstanceType('t3a.nano')))
+
+        ####################
+        # MySQL
+        ####################
+
+        sg_aurora = ec2.SecurityGroup(self, 'sgAurora', vpc=vpc, security_group_name= 'AuroraMysql')
+        #sg_aurora.add_ingress_rule(cluster.cluster_security_group, ec2.Port.tcp(3306))
+
+        # Create cluster
+        db = rds.DatabaseCluster(self, 'database',
+                                engine=rds.DatabaseClusterEngine.aurora_mysql(version=rds.AuroraMysqlEngineVersion.VER_2_10_0),
+                                cluster_identifier='db-cluster',
+                                instances=1,
+                                instance_props=rds.InstanceProps(
+                                    vpc=vpc,
+                                    vpc_subnets=ec2.SubnetSelection(subnet_type=ec2.SubnetType.PRIVATE),
+                                    instance_type=ec2.InstanceType('t3.small'),
+                                    security_groups=[sg_aurora]
+                                ))
