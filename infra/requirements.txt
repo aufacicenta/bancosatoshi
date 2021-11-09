@@ -3,3 +3,4 @@ aws-cdk.assertions>=1.132.0
 aws-cdk.aws_ec2>=1.132.0
 aws-cdk.aws_rds>=1.132.0
 aws-cdk.aws_eks>=1.132.0
+aws-cdk.aws_route53>=1.132.0

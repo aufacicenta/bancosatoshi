@@ -2,7 +2,8 @@ from aws_cdk import (
     core as cdk,
     aws_ec2 as ec2,
     aws_rds as rds,
-    aws_eks as eks
+    aws_eks as eks,
+    aws_route53 as route53
 )
 
 # For consistency with other languages, `cdk` is the preferred import name for
@@ -57,3 +58,27 @@ class InfraStack(cdk.Stack):
                                     instance_type=ec2.InstanceType('t3.small'),
                                     security_groups=[sg_aurora]
                                 ))
+
+        ####################
+        # Privete DNS Zone
+        ####################
+
+        # Create dns zone
+        zone_pv = route53.PrivateHostedZone(self, 'privateZone',
+                                            vpc=vpc,
+                                            zone_name='bancosat.local')
+
+        # DB Write Record
+        db_record = route53.CnameRecord(self, 'dbWriteRecord',
+                                        domain_name=db.cluster_endpoint.hostname,
+                                        record_name='db',
+                                        zone=zone_pv,
+                                        ttl=core.Duration.minutes(1))
+
+        # DB Read Record
+        route53.CnameRecord(self, 'dbReadRecord',
+                            domain_name=db.cluster_read_endpoint.hostname,
+                            record_name='db-ro',
+                            zone=zone_pv,
+                            ttl=core.Duration.minutes(1))
+                            
