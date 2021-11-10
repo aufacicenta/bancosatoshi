@@ -51,6 +51,7 @@ class InfraStack(cdk.Stack):
         db = rds.DatabaseCluster(self, 'database',
                                 engine=rds.DatabaseClusterEngine.aurora_mysql(version=rds.AuroraMysqlEngineVersion.VER_2_10_0),
                                 cluster_identifier='db-cluster',
+                                default_database_name="wordpress",
                                 instances=1,
                                 instance_props=rds.InstanceProps(
                                     vpc=vpc,
