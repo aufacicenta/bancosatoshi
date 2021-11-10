@@ -7,5 +7,9 @@
     "us-east-1e",
     "us-east-1f"
   ],
-  "ami:account=111975705704:filters.image-type.0=machine:filters.name.0=amzn-ami-vpc-nat-*:filters.state.0=available:owners.0=amazon:region=us-east-1": "ami-0822796fd7b3ba710"
+  "ami:account=111975705704:filters.image-type.0=machine:filters.name.0=amzn-ami-vpc-nat-*:filters.state.0=available:owners.0=amazon:region=us-east-1": "ami-0822796fd7b3ba710",
+  "hosted-zone:account=111975705704:domainName=bancosatoshi.com:region=us-east-1": {
+    "Id": "/hostedzone/Z09696872U4THTB2UYZK6",
+    "Name": "bancosatoshi.com."
+  }
 }

@@ -3,7 +3,8 @@ from aws_cdk import (
     aws_ec2 as ec2,
     aws_rds as rds,
     aws_eks as eks,
-    aws_route53 as route53
+    aws_route53 as route53,
+    aws_certificatemanager as acm
 )
 
 # For consistency with other languages, `cdk` is the preferred import name for
@@ -70,11 +71,11 @@ class InfraStack(cdk.Stack):
                                             zone_name='bancosat.local')
 
         # DB Write Record
-        db_record = route53.CnameRecord(self, 'dbWriteRecord',
-                                        domain_name=db.cluster_endpoint.hostname,
-                                        record_name='db',
-                                        zone=zone_pv,
-                                        ttl=core.Duration.minutes(1))
+        route53.CnameRecord(self, 'dbWriteRecord',
+                            domain_name=db.cluster_endpoint.hostname,
+                            record_name='db',
+                            zone=zone_pv,
+                            ttl=core.Duration.minutes(1))
 
         # DB Read Record
         route53.CnameRecord(self, 'dbReadRecord',
@@ -82,4 +83,15 @@ class InfraStack(cdk.Stack):
                             record_name='db-ro',
                             zone=zone_pv,
                             ttl=core.Duration.minutes(1))
-                            
+        
+        #####################
+        # Public Certificates
+        #####################
+
+        public_zone = route53.PublicHostedZone.from_lookup(self, 'public_zone', domain_name='bancosatoshi.com')
+
+        acm.Certificate(self, "cert",
+            domain_name='bancosatoshi.com',
+            subject_alternative_names=['*.bancosatoshi.com'],
+            validation=acm.CertificateValidation.from_dns(public_zone)
+        )
