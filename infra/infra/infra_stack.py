@@ -61,6 +61,37 @@ class InfraStack(cdk.Stack):
                                     security_groups=[sg_aurora]
                                 ))
 
+        #####################
+        # BTCPAY Server
+        #####################
+
+        # Security Group
+        sg_btcpay = ec2.SecurityGroup(self, 'sgBTCPay', vpc=vpc, security_group_name="BTCPay")
+        sg_btcpay.add_ingress_rule(ec2.Peer.any_ipv4(), ec2.Port.tcp(80))
+        sg_btcpay.add_ingress_rule(ec2.Peer.any_ipv4(), ec2.Port.tcp(443))
+
+        # Machine type
+        machine = ec2.MachineImage.generic_linux(
+            {
+                'us-east-1': 'ami-083654bd07b5da81d',
+            }
+        )
+
+        # Instance
+        btcpay = ec2.Instance(self, "btcPay", 
+            vpc=vpc, 
+            instance_type=ec2.InstanceType('m5.large'), 
+            machine_image=machine,
+            instance_name="btcPay",
+            key_name="bancosat",
+            security_group=sg_btcpay,
+            vpc_subnets=ec2.SubnetSelection(subnet_type=ec2.SubnetType.PUBLIC)
+        )
+
+        # Elastic IP for BTCPay Server
+        eip = ec2.CfnEIP(self, "ipBTCPay")
+        epi_as = ec2.CfnEIPAssociation(self, "Ec2Association", eip=eip.ref, instance_id=btcpay.instance_id)
+
         ####################
         # Privete DNS Zone
         ####################
@@ -85,11 +116,19 @@ class InfraStack(cdk.Stack):
                             ttl=core.Duration.minutes(1))
         
         #####################
-        # Public Certificates
+        # Public Zone
         #####################
 
+        # Public zone import
         public_zone = route53.PublicHostedZone.from_lookup(self, 'public_zone', domain_name='bancosatoshi.com')
 
+        # BTCPay server record
+        route53.ARecord(self, "btcPayRecord",
+                        record_name="pay.bancosatoshi.com",
+                        zone=public_zone, 
+                        target=route53.RecordTarget.from_ip_addresses(epi_as.eip))
+
+        # ACM Public Certificate
         acm.Certificate(self, "cert",
             domain_name='bancosatoshi.com',
             subject_alternative_names=['*.bancosatoshi.com'],
