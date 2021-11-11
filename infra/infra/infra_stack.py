@@ -124,7 +124,7 @@ class InfraStack(cdk.Stack):
 
         # BTCPay server record
         route53.ARecord(self, "btcPayRecord",
-                        record_name="pay.bancosatoshi.com",
+                        record_name="btc.bancosatoshi.com",
                         zone=public_zone, 
                         target=route53.RecordTarget.from_ip_addresses(epi_as.eip))
 
