@@ -80,12 +80,18 @@ class InfraStack(cdk.Stack):
         # Instance
         btcpay = ec2.Instance(self, "btcPay", 
             vpc=vpc, 
-            instance_type=ec2.InstanceType('m5.large'), 
+            instance_type=ec2.InstanceType('m5a.large'), 
             machine_image=machine,
             instance_name="btcPay",
             key_name="bancosat",
             security_group=sg_btcpay,
-            vpc_subnets=ec2.SubnetSelection(subnet_type=ec2.SubnetType.PUBLIC)
+            vpc_subnets=ec2.SubnetSelection(subnet_type=ec2.SubnetType.PUBLIC),
+            block_devices=[
+                {
+                    'deviceName': '/dev/sda1',
+                    'volume': ec2.BlockDeviceVolume.ebs(100)
+                }
+            ]
         )
 
         # Elastic IP for BTCPay Server
