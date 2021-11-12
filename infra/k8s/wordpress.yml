@@ -1,0 +1,99 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: wordpress
+  labels:
+    app: wordpress
+  annotations:
+    # Note that the backend talks over HTTP.
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
+    # TODO: Fill in with the ARN of your certificate.
+    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: arn:aws:acm:us-east-1:111975705704:certificate/46c3e164-230e-4f45-bd84-d550618d2f6c
+    # Only run SSL on the port named "https" below.
+    service.beta.kubernetes.io/aws-load-balancer-ssl-ports: https
+spec:
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+    - name: "https"
+      port: 443
+      targetPort: 80
+  selector:
+    app: wordpress
+    tier: frontend
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: wp-pv-claim
+  labels:
+    app: wordpress
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpress
+  labels:
+    app: wordpress
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: wordpress
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        app: wordpress
+        tier: frontend
+    spec:
+      containers:
+      - image: wordpress:5.8.1-apache
+        name: wordpress
+        env:
+        - name: WORDPRESS_DB_HOST
+          value: db.bancosat.local
+        - name: WORDPRESS_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: wordpress-secrets
+              key: password
+        - name: WORDPRESS_DB_USER
+          value: admin
+        ports:
+        - containerPort: 80
+          name: wordpress
+        volumeMounts:
+        - name: wordpress-persistent-storage
+          mountPath: /var/www/html
+        - name: custom-php-ini
+          mountPath: /usr/local/etc/php/conf.d/custom.ini
+          subPath: custom.ini
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+      volumes:
+        - name: wordpress-persistent-storage
+          persistentVolumeClaim:
+            claimName: wp-pv-claim
+        - name: custom-php-ini
+          configMap:
+            name: php-ini
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: php-ini
+data:
+  custom.ini: |
+    upload_max_filesize = 32M
+    post_max_size = 32M 
