@@ -132,7 +132,21 @@ class InfraStack(cdk.Stack):
         route53.ARecord(self, "btcPayRecord",
                         record_name="btc.bancosatoshi.com",
                         zone=public_zone, 
-                        target=route53.RecordTarget.from_ip_addresses(epi_as.eip))
+                        target=route53.RecordTarget.from_ip_addresses(epi_as.eip),
+                        ttl=core.Duration.minutes(1))
+
+        # Vercel Records
+        route53.ARecord(self, "vercelARecord",
+                        record_name="bancosatoshi.com",
+                        zone=public_zone, 
+                        target=route53.RecordTarget.from_ip_addresses('76.76.21.21'),
+                        ttl=core.Duration.minutes(1))
+
+        route53.CnameRecord(self, 'vercelCnameRecord',
+                            domain_name='cname.vercel-dns.com',
+                            record_name='www',
+                            zone=public_zone,
+                            ttl=core.Duration.minutes(1))
 
         # ACM Public Certificate
         acm.Certificate(self, "cert",
