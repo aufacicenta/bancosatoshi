@@ -1,5 +1,11 @@
 @import "src/theme/base";
 
 .business-details {
-  display: block;
+  padding-bottom: $navbar-height;
+
+  &__box {
+    background-color: var(--color-background);
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+  }
 }

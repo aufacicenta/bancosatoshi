@@ -1,6 +1,6 @@
 import { BusinessDetailsContent } from "../BusinessDetails.types";
 
-export type BusinessContentProps = {
+export type BusinessHeaderProps = {
   content: BusinessDetailsContent;
   className?: string;
 };

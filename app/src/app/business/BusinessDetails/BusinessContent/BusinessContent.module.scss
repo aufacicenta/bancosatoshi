@@ -1,7 +1,7 @@
 @import "src/theme/base";
 
 .business-content {
-  padding-bottom: $space-xl;
+  padding: 0 $space-default $space-xl;
 
   h2 {
     @include font-properties($typography-headline-6);

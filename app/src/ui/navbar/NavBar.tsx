@@ -5,7 +5,7 @@ import { Typography } from "../typography/Typography";
 import styles from "./NavBar.module.scss";
 import { NavBarProps } from "./NavBar.types";
 
-export const NavBar: React.FC<NavBarProps> = ({ children }) => (
+export const NavBar: React.FC<NavBarProps> = () => (
   <div className={styles.navbar}>
     <Container>
       <Row>

@@ -1,0 +1,39 @@
+@import "src/theme/base";
+
+.business-header {
+  display: block;
+  margin-top: -$navbar-height + $space-default;
+
+  &__cover-image {
+    display: block;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 280px;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+  }
+
+  &__description {
+    margin-bottom: $space-ml;
+  }
+
+  &__info {
+    padding: $space-default;
+  }
+
+  &__map {
+    height: 210px;
+    background-color: var(--color-dark-3);
+  }
+
+  &__link {
+    &--website {
+      display: block;
+    }
+
+    &--social {
+      display: block;
+    }
+  }
+}

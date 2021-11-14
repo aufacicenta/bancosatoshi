@@ -1,6 +1,11 @@
 export type Styles = {
-  "business-details": string;
-  "business-details__box": string;
+  "business-header": string;
+  "business-header__cover-image": string;
+  "business-header__description": string;
+  "business-header__info": string;
+  "business-header__link--social": string;
+  "business-header__link--website": string;
+  "business-header__map": string;
   "z-depth-0": string;
   "z-depth-1": string;
   "z-depth-1-half": string;
