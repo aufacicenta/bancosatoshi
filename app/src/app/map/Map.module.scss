@@ -1,0 +1,16 @@
+@import "../../theme/base";
+
+.map {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+
+  &__panel {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 100%;
+    z-index: 3;
+  }
+}
