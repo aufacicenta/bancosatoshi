@@ -18,7 +18,14 @@ export const MapView: React.FC<MapViewProps> = ({ children, className, mapOption
 
   return (
     <div ref={mapRootElementRef} className={clsx(styles["map-view"], className)}>
-      <MapViewProvider value={currentMap}>{children}</MapViewProvider>
+      <MapViewProvider
+        value={{
+          map: currentMap,
+          mapOptions,
+        }}
+      >
+        {children}
+      </MapViewProvider>
     </div>
   );
 };
