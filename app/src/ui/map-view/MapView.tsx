@@ -2,7 +2,7 @@ import React from "react";
 import clsx from "clsx";
 import styles from "./Mapview.module.scss";
 
-import { MapViewProps } from "./Mapview.types";
+import { MapViewProps } from "./MapView.types";
 import { MapViewProvider } from "hooks/useMapContext/useMapContext";
 
 export const MapView: React.FC<MapViewProps> = ({ children, className, mapOptions }) => {

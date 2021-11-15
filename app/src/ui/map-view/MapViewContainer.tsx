@@ -1,6 +1,6 @@
-import { MapView } from "./Mapview";
+import { MapView } from "./MapView";
 import { Wrapper } from "@googlemaps/react-wrapper";
-import { MapViewContainerProps } from "./Mapview.types";
+import { MapViewContainerProps } from "./MapView.types";
 
 export const MapviewContainer: React.FC<MapViewContainerProps> = ({ children, mapOptions }) => {
   const apiKey = `${process.env.NEXT_PUBLIC_MAPS_API_KEY}`;
