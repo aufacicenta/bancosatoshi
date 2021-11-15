@@ -39,7 +39,7 @@ const getPageContentByBusinessSlug = async (slug: string) => {
       longitude: page?.custom_fields?.longitude,
       instagram: page?.custom_fields?.instagram,
       website: page?.custom_fields?.website,
-      markerIcon: page?.custom_fields?.markerIcon,
+      markerIcon: page?.custom_fields?.marker_icon,
       media: {
         featuredImageUrl: media?.media_details?.sizes?.large?.source_url,
       },
