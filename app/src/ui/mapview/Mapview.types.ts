@@ -1,7 +1,9 @@
 import { ReactNode, CSSProperties } from "react";
 
 export type MapViewProps = {
-  children?: ReactNode;
+  children: ReactNode;
   className?: string;
-  options: google.maps.MapOptions;
+  mapOptions: google.maps.MapOptions;
 };
+
+export type MapViewContainerProps = Partial<MapViewProps>;
