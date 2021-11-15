@@ -1,12 +1,14 @@
 import React from "react";
+interface IMapViewContextValue {
+  map: google.maps.Map | undefined;
+  mapOptions: google.maps.MapOptions;
+}
 
-type MapViewContextValue = any;
-
-const MapViewContext = React.createContext(null as MapViewContextValue);
+const MapViewContext = React.createContext<IMapViewContextValue>({} as IMapViewContextValue);
 
 export const MapViewProvider = MapViewContext.Provider;
 
-export const useMapContext: () => typeof MapViewContext = () => {
+export const useMapContext: () => IMapViewContextValue = () => {
   const context = React.useContext(MapViewContext);
 
   if (!context) {
