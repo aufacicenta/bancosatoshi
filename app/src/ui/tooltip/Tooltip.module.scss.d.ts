@@ -1,11 +1,10 @@
 export type Styles = {
-  "invest-now-widget": string;
-  "invest-now-widget__cta-button--icon": string;
-  "invest-now-widget__cta-text": string;
-  "invest-now-widget__fixed-col": string;
-  "invest-now-widget__goal": string;
-  "invest-now-widget__terms": string;
-  "invest-now-widget__warnings": string;
+  tooltip: string;
+  tooltip__backdrop: string;
+  "tooltip__backdrop--visible": string;
+  tooltip__box: string;
+  "tooltip__box--visible": string;
+  tooltip__title: string;
   "z-depth-0": string;
   "z-depth-1": string;
   "z-depth-1-half": string;

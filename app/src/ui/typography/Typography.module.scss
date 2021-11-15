@@ -28,6 +28,11 @@
     @include normalizeTypography;
     color: var(--color-typography-headline-4);
     margin-bottom: $space-xs;
+
+    [class^="icon-"],
+    [class*=" icon-"] {
+      font-size: $font-size-headline-4 * 0.75;
+    }
   }
 
   &__headline5 {
@@ -51,6 +56,11 @@
     @include normalizeTypography;
     margin-bottom: $space-s;
     color: var(--color-typography-text);
+
+    [class^="icon-"],
+    [class*=" icon-"] {
+      font-size: $font-size-text * 0.75;
+    }
   }
 
   &__text-lead {

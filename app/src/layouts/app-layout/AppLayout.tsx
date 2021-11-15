@@ -27,6 +27,10 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
         <meta property="og:url" content="https://aufacicenta.com" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content={locale} />
+        <link rel="preload" href="/icons/icomoon.eot" as="font" crossOrigin="" />
+        <link rel="preload" href="/icons/icomoon.ttf" as="font" crossOrigin="" />
+        <link rel="preload" href="/icons/icomoon.woff" as="font" crossOrigin="" />
+        <link rel="preload" href="/icons/icomoon.svg" as="font" crossOrigin="" />
       </Head>
       <main>{children}</main>
     </>

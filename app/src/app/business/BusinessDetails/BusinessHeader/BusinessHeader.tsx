@@ -2,6 +2,7 @@ import clsx from "clsx";
 
 import { Typography } from "ui/typography/Typography";
 import { Grid } from "ui/grid/Grid";
+import { Icon } from "ui/icon/Icon";
 
 import { BusinessHeaderProps } from "./BusinessHeader.types";
 import styles from "./BusinessHeader.module.scss";
