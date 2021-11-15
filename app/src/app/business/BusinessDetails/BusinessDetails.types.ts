@@ -12,6 +12,7 @@ export type BusinessDetailsContent = {
   website: string;
   asHtmlString: string;
   media: BusinessDetailsMedia;
+  marker_icon: string;
 };
 
 export type BusinessDetailsMedia = {

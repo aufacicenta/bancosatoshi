@@ -6,6 +6,7 @@ import { Grid } from "ui/grid/Grid";
 import { BusinessHeaderProps } from "./BusinessHeader.types";
 import styles from "./BusinessHeader.module.scss";
 import { MapviewContainer } from "ui/mapview/MapviewContainer";
+import { MapMarker } from "ui/map-marker/MapMarker";
 
 export const BusinessHeader: React.FC<BusinessHeaderProps> = ({ className, content }) => {
   const mapOptions = {
@@ -25,7 +26,13 @@ export const BusinessHeader: React.FC<BusinessHeaderProps> = ({ className, conte
       <div className={styles["business-header__info"]}>
         <Grid.Row>
           <Grid.Col lg={4}>
-            <MapviewContainer mapOptions={mapOptions}></MapviewContainer>
+            <MapviewContainer mapOptions={mapOptions}>
+              <MapMarker
+                markerOptions={{
+                  icon: content.marker_icon,
+                }}
+              />
+            </MapviewContainer>
           </Grid.Col>
           <Grid.Col lg={8}>
             <Typography.Headline1>{content.title}</Typography.Headline1>
@@ -33,7 +40,7 @@ export const BusinessHeader: React.FC<BusinessHeaderProps> = ({ className, conte
             <Grid.Row justify="between">
               <Grid.Col>
                 <Typography.Text>
-                  {content.country} · {content.category} {content.longitude} {content.latitude}
+                  {content.country} · {content.category}
                 </Typography.Text>
               </Grid.Col>
               <Grid.Col>
