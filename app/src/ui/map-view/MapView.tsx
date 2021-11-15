@@ -1,9 +1,9 @@
 import React from "react";
 import clsx from "clsx";
-import styles from "./Mapview.module.scss";
+import styles from "./MapView.module.scss";
 
 import { MapViewProps } from "./MapView.types";
-import { MapViewProvider } from "hooks/useMapContext/useMapContext";
+import { MapContextController } from "context/map/MapContextController";
 
 export const MapView: React.FC<MapViewProps> = ({ children, className, mapOptions }) => {
   const mapRootElementRef = React.useRef<HTMLDivElement>(null);
@@ -18,14 +18,9 @@ export const MapView: React.FC<MapViewProps> = ({ children, className, mapOption
 
   return (
     <div ref={mapRootElementRef} className={clsx(styles["map-view"], className)}>
-      <MapViewProvider
-        value={{
-          map: currentMap,
-          mapOptions,
-        }}
-      >
+      <MapContextController map={currentMap} mapOptions={mapOptions}>
         {children}
-      </MapViewProvider>
+      </MapContextController>
     </div>
   );
 };
