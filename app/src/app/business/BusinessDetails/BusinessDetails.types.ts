@@ -12,7 +12,7 @@ export type BusinessDetailsContent = {
   website: string;
   asHtmlString: string;
   media: BusinessDetailsMedia;
-  marker_icon: string;
+  markerIcon: string;
 };
 
 export type BusinessDetailsMedia = {
