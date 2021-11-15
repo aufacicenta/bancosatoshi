@@ -18,13 +18,13 @@ export const InvestNowWidget: React.FC<InvestNowWidgetProps> = ({ className, con
         <Grid.Col lg={4} offset={{ lg: 8 }} className={styles["invest-now-widget__fixed-col"]}>
           <Card shadow>
             <Card.Content>
-              <Typography.Description>
-                Nivel de Riesgo: Medio{" "}
+              <Tooltip.Wrapper>
+                <Typography.Description>Nivel de Riesgo: Medio</Typography.Description>
                 <Tooltip
                   title="Nivel de Riesgo Medio"
                   description={`${content.title} tiene una edad de 2 años. Tiene libros contables en orden y tiene un score 8.5 de 10 en el Protocolo de Inversión.`}
                 />
-              </Typography.Description>
+              </Tooltip.Wrapper>
               <hr />
               <Typography.Headline3 className={styles["invest-now-widget__cta-text"]}>
                 Invierte en {content.title}
@@ -32,14 +32,14 @@ export const InvestNowWidget: React.FC<InvestNowWidgetProps> = ({ className, con
               <div className={styles["invest-now-widget__terms"]}>
                 <Grid.Row>
                   <Grid.Col lg={6}>
-                    <Typography.Headline4>1.5x</Typography.Headline4>
-                    <Typography.Text>
-                      Retorno sobre tu inversión.{" "}
+                    <Tooltip.Wrapper>
+                      <Typography.Headline4>1.5x</Typography.Headline4>
                       <Tooltip
                         title="ROI"
                         description={`Si inviertes 10 SAT, ${content.title} se compromete a devolverte 15 SAT a lo largo de la vida útil del acuerdo: Nov 21, 2025.`}
                       />
-                    </Typography.Text>
+                    </Tooltip.Wrapper>
+                    <Typography.Text>Retorno sobre tu inversión.</Typography.Text>
                   </Grid.Col>
                   <Grid.Col lg={6}>
                     <Typography.Headline4>25 SAT</Typography.Headline4>
@@ -48,7 +48,8 @@ export const InvestNowWidget: React.FC<InvestNowWidgetProps> = ({ className, con
                 </Grid.Row>
               </div>
               <Button fullWidth>
-                Depositar BTC <Icon name="icon-power" className={styles["invest-now-widget__cta-button--icon"]} />
+                Depositar BTC
+                <Icon name="icon-power" className={styles["invest-now-widget__cta-button--icon"]} />
               </Button>
               <div className={styles["invest-now-widget__goal"]}>
                 <div>

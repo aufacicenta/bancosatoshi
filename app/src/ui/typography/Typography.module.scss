@@ -1,7 +1,11 @@
 @import "../../theme/base";
 
 .typography {
-  color: var(--color-primary);
+  position: relative;
+
+  &__inline {
+    display: inline-block;
+  }
 
   &__headline1 {
     @include font-properties($typography-headline-1);

@@ -1,12 +1,19 @@
 @import "src/theme/base";
 
 .tooltip {
-  display: inline-block;
+  display: block;
   color: var(--color-primary);
-  position: relative;
+  position: absolute;
+  right: -16px;
+  top: -12px;
 
   &:hover {
     cursor: pointer;
+  }
+
+  &__wrapper {
+    position: relative;
+    width: fit-content;
   }
 
   &__backdrop {
@@ -52,5 +59,9 @@
 
   &__title {
     margin-bottom: $space-xs;
+  }
+
+  &__icon {
+    font-size: $font-size-description;
   }
 }

@@ -35,8 +35,8 @@ const Headline3: React.FC<TypographyProps> = ({ children, className }) => (
   <h3 className={clsx(styles.typography__headline3, className)}>{children}</h3>
 );
 
-const Headline4: React.FC<TypographyProps> = ({ children, className }) => (
-  <h4 className={clsx(styles.typography__headline4, className)}>{children}</h4>
+const Headline4: React.FC<TypographyProps> = ({ children, className, inline }) => (
+  <h4 className={clsx(styles.typography__headline4, className, { [styles.typography__inline]: inline })}>{children}</h4>
 );
 
 const Headline5: React.FC<TypographyProps> = ({ children, className }) => (
@@ -47,8 +47,8 @@ const Headline6: React.FC<TypographyProps> = ({ children, className }) => (
   <h6 className={clsx(styles.typography__headline6, className)}>{children}</h6>
 );
 
-const Text: React.FC<TypographyProps> = ({ children, className }) => (
-  <p className={clsx(styles.typography__text, className)}>{children}</p>
+const Text: React.FC<TypographyProps> = ({ children, className, inline }) => (
+  <p className={clsx(styles.typography__text, className, { [styles.typography__inline]: inline })}>{children}</p>
 );
 
 const TextLead: React.FC<TypographyProps> = ({ children, className }) => (
@@ -71,8 +71,8 @@ const MiniButtonLabel: React.FC<TypographyProps> = ({ children, className }) => 
   <span className={clsx(styles["typography__mini-button-label"], className)}>{children}</span>
 );
 
-const Description: React.FC<TypographyProps> = ({ children, className }) => (
-  <p className={clsx(styles.typography__description, className)}>{children}</p>
+const Description: React.FC<TypographyProps> = ({ children, className, inline }) => (
+  <p className={clsx(styles.typography__description, className, { [styles.typography__inline]: inline })}>{children}</p>
 );
 
 const MiniDescription: React.FC<TypographyProps> = ({ children, className }) => (

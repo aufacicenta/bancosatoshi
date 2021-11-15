@@ -8,6 +8,7 @@ export type Styles = {
   typography__headline4: string;
   typography__headline5: string;
   typography__headline6: string;
+  typography__inline: string;
   typography__link: string;
   "typography__mini-button-label": string;
   "typography__mini-description": string;

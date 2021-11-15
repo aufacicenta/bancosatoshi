@@ -5,10 +5,10 @@ import { Icon } from "ui/icon/Icon";
 import { Typography } from "ui/typography/Typography";
 import { Card } from "ui/card/Card";
 
-import { TooltipProps } from "./Tooltip.types";
+import { TooltipProps, TooltipWrapperProps } from "./Tooltip.types";
 import styles from "./Tooltip.module.scss";
 
-export const Tooltip: React.FC<TooltipProps> = ({ className, title, description }) => {
+export const Tooltip = ({ className, title, description }: TooltipProps) => {
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
 
   const handleOnClick = () => {
@@ -24,24 +24,26 @@ export const Tooltip: React.FC<TooltipProps> = ({ className, title, description 
         onClick={handleOnClick}
         role="presentation"
       />
-      <div>
-        <Icon name="icon-question-circle" onClick={handleOnClick} />
-        <Card
-          shadow
-          className={clsx(styles.tooltip__box, {
-            [styles["tooltip__box--visible"]]: isTooltipVisible,
-          })}
-        >
-          <div>
-            {!!title && (
-              <Typography.Description className={styles.tooltip__title}>
-                <strong>{title}</strong>
-              </Typography.Description>
-            )}
-            <Typography.Description>{description}</Typography.Description>
-          </div>
-        </Card>
-      </div>
+      <Icon name="icon-question-circle" onClick={handleOnClick} className={styles.tooltip__icon} />
+      <Card
+        shadow
+        className={clsx(styles.tooltip__box, {
+          [styles["tooltip__box--visible"]]: isTooltipVisible,
+        })}
+      >
+        <div>
+          {!!title && (
+            <Typography.Description className={styles.tooltip__title}>
+              <strong>{title}</strong>
+            </Typography.Description>
+          )}
+          <Typography.Description>{description}</Typography.Description>
+        </div>
+      </Card>
     </div>
   );
 };
+
+const Wrapper = ({ children }: TooltipWrapperProps) => <div className={styles.tooltip__wrapper}>{children}</div>;
+
+Tooltip.Wrapper = Wrapper;

@@ -4,7 +4,9 @@ export type Styles = {
   "tooltip__backdrop--visible": string;
   tooltip__box: string;
   "tooltip__box--visible": string;
+  tooltip__icon: string;
   tooltip__title: string;
+  tooltip__wrapper: string;
   "z-depth-0": string;
   "z-depth-1": string;
   "z-depth-1-half": string;
