@@ -1,12 +1,12 @@
 import { NextPage } from "next";
 import { AppLayout } from "layouts/app-layout/AppLayout";
 import { AuthLayout } from "layouts/auth-layout/AuthLayout";
-import { MapContainer } from "app/map/MapContainer";
+import { Map as MapView } from "app/map/Map";
 
 const Map: NextPage = () => (
   <AppLayout>
     <AuthLayout>
-      <MapContainer />
+      <MapView />
     </AuthLayout>
   </AppLayout>
 );
