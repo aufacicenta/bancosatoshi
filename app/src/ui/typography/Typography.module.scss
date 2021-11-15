@@ -27,6 +27,7 @@
     @include font-properties($typography-headline-4);
     @include normalizeTypography;
     color: var(--color-typography-headline-4);
+    margin-bottom: $space-xs;
   }
 
   &__headline5 {

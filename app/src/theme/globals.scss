@@ -168,7 +168,7 @@ body[data-theme="light"] {
 
   // Button
   --color-button-primary: var(--color-primary);
-  --color-button-primary-text: var(--color-primary);
+  --color-button-primary-text: var(--color-white);
   --color-button-primary-hover: var(--color-primary);
   --color-button-primary-hover-text: var(--color-white);
   --color-button-secondary: var(--color-dark-8);
@@ -208,7 +208,9 @@ body[data-theme="light"] {
 }
 
 hr {
-  border-color: var(--color-dark-9);
+  height: 1px;
+  background-color: var(--color-dark-7);
+  border: none;
 }
 
 code {

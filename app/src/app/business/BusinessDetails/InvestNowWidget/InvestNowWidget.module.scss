@@ -1,0 +1,73 @@
+@import "src/theme/base";
+
+.invest-now-widget {
+  position: fixed;
+  width: 100%;
+  z-index: $z-index-navigation;
+  margin-top: -$navbar-height + $space-default;
+
+  &__fixed-col {
+    height: 0;
+  }
+
+  &__cta-text {
+    margin-top: $space-default;
+    text-align: center;
+  }
+
+  &__terms {
+    margin-top: $space-ml;
+    margin-bottom: $space-default;
+    h4,
+    p {
+      margin-bottom: 0;
+    }
+    p {
+      line-height: 1;
+    }
+  }
+
+  &__warnings {
+    padding: $space-default;
+    background-color: var(--color-background-contrast);
+    border-radius: $border-radius;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.39), 0 -1px 1px #fff, 0 1px 0 #fff;
+
+    p {
+      margin-bottom: 0;
+    }
+
+    > div {
+      margin-bottom: $space-s;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__goal {
+    padding: $space-m 0;
+    h4,
+    p {
+      margin-bottom: 0;
+    }
+
+    p {
+      line-height: 1;
+    }
+
+    > div {
+      background-color: var(--color-background-contrast);
+      margin-bottom: $space-s;
+      border-left: 2px solid var(--color-status-info);
+      padding-left: $space-s;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 49px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

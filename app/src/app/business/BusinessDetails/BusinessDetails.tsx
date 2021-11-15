@@ -10,9 +10,11 @@ import { BusinessDetailsProps } from "./BusinessDetails.types";
 import styles from "./BusinessDetails.module.scss";
 import { BusinessContent } from "./BusinessContent/BusinessContent";
 import { BusinessHeader } from "./BusinessHeader/BusinessHeader";
+import { InvestNowWidget } from "./InvestNowWidget/InvestNowWidget";
 
 export const BusinessDetails: React.FC<BusinessDetailsProps> = ({ content }) => (
   <div className={clsx(styles["business-details"])}>
+    <InvestNowWidget content={content} />
     <Container>
       <Grid.Row>
         <Grid.Col lg={8}>
