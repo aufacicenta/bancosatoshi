@@ -1,6 +1,6 @@
-import { ReactNode, CSSProperties } from 'react';
+import { ReactNode, CSSProperties } from "react";
 
 export type MapProps = {
-  children: ReactNode;
+  children?: ReactNode;
   className?: string;
 };

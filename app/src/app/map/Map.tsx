@@ -1,8 +1,7 @@
 import styles from "./Map.module.scss";
 
 import { MapProps } from "./Map.types";
-
-import { MapviewContainer } from "ui/mapview/MapviewContainer";
+import { MapViewContainer } from "ui/map-view/MapViewContainer";
 
 export const Map: React.FC<MapProps> = ({ children, className }) => {
   const countryCoordinates = { lat: 13.7747, lng: -88.8554 };
@@ -12,9 +11,9 @@ export const Map: React.FC<MapProps> = ({ children, className }) => {
   };
 
   return (
-    <div className={styles["map-container"]}>
-      <div className={styles["map-container__panel"]}>
-        <MapviewContainer mapOptions={businessesMapConfig} />
+    <div className={styles["map"]}>
+      <div className={styles["map__panel"]}>
+        <MapViewContainer mapOptions={businessesMapConfig} />
       </div>
     </div>
   );
