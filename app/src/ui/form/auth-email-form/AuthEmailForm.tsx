@@ -1,15 +1,13 @@
 import clsx from "clsx";
-import dynamic from "next/dynamic";
 
 import { Form } from "../Form";
-import { Card } from "../../card/Card";
 import { Button } from "../../button/Button";
 
 import styles from "./AuthEmailForm.module.scss";
 import { AuthEmailFormProps } from "./AuthEmailForm.types";
 
-export const AuthEmailForm: React.FC<AuthEmailFormProps> = ({ className, autoFocus }) => (
-  <Form className={clsx(styles["auth-email-form"], className)}>
+export const AuthEmailForm: React.FC<AuthEmailFormProps> = ({ className, autoFocus, onSubmit, isLoading }) => (
+  <Form className={clsx(styles["auth-email-form"], className)} onSubmit={onSubmit}>
     <div className={styles["auth-email-form__inline-wrapper"]}>
       <div className={styles["auth-email-form__inline-wrapper--form"]}>
         <Form.TextInput
@@ -21,7 +19,7 @@ export const AuthEmailForm: React.FC<AuthEmailFormProps> = ({ className, autoFoc
         />
       </div>
       <div className={styles["auth-email-form__inline-wrapper--button"]}>
-        <Button variant="outlined" fullWidth>
+        <Button variant="outlined" fullWidth type="submit" isLoading={isLoading}>
           Ingresar
         </Button>
       </div>

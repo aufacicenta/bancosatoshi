@@ -32,10 +32,10 @@ textarea.materialize-textarea {
   font-size: $input-font-size;
   margin: $input-margin;
   padding: 0px $space-s;
-  box-shadow: none;
   box-sizing: border-box;
   transition: box-shadow 0.3s, border 0.3s;
   color: var(--color-typography-text);
+  @include boxShadowInset;
 
   // Disabled input style
   &:disabled,
@@ -52,8 +52,7 @@ textarea.materialize-textarea {
 
   // Focused input style
   &:focus:not([readonly]) {
-    border-bottom: 1px solid $input-focus-color;
-    box-shadow: 0 1px 0 0 $input-focus-color;
+    border-bottom: 2px solid $input-focus-color;
   }
 
   // Focused label style

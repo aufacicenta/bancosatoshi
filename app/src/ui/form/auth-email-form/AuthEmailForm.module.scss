@@ -4,6 +4,8 @@
   background-color: var(--color-background-contrast);
   padding: $space-default;
   padding-top: $space-ml;
+  @include boxShadowInset;
+  border-radius: $border-radius;
 
   &__input {
     input {

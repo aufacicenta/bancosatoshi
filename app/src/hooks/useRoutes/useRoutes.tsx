@@ -6,6 +6,10 @@ type RouteMap = {
       listProperty: string;
     };
   };
+  auth: {
+    signIn: string;
+  };
+  home: string;
 };
 
 export const useRoutes: () => RouteMap = () => ({
@@ -16,4 +20,8 @@ export const useRoutes: () => RouteMap = () => ({
       listProperty: "/real-estate/solana/list-property",
     },
   },
+  auth: {
+    signIn: "/a/ingresa", // @TODO resolve i18n paths for all languages
+  },
+  home: "/",
 });

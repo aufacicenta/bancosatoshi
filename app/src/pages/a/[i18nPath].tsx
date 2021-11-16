@@ -12,4 +12,13 @@ const Index: NextPage = () => (
   </AppLayout>
 );
 
+export async function getStaticPaths() {
+  // @TODO set resolve i18nPath for all languages
+  return { paths: [{ params: { i18nPath: "ingresa" } }], fallback: false };
+}
+
+export async function getStaticProps() {
+  return { props: {} };
+}
+
 export default Index;
