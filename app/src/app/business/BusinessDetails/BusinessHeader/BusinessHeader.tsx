@@ -2,11 +2,11 @@ import clsx from "clsx";
 
 import { Typography } from "ui/typography/Typography";
 import { Grid } from "ui/grid/Grid";
+import { MapMarker } from "ui/map/map-marker/MapMarker";
+import { MapView } from "ui/map/map-view/MapView";
 
 import { BusinessHeaderProps } from "./BusinessHeader.types";
 import styles from "./BusinessHeader.module.scss";
-import { MapViewContainer } from "ui/map-view/MapViewContainer";
-import { MapMarker } from "ui/map-marker/MapMarker";
 
 export const BusinessHeader: React.FC<BusinessHeaderProps> = ({ className, content }) => {
   const mapOptions = {
@@ -26,13 +26,15 @@ export const BusinessHeader: React.FC<BusinessHeaderProps> = ({ className, conte
       <div className={styles["business-header__info"]}>
         <Grid.Row>
           <Grid.Col lg={4}>
-            <MapViewContainer mapOptions={mapOptions}>
-              <MapMarker
-                markerOptions={{
-                  icon: content.markerIcon,
-                }}
-              />
-            </MapViewContainer>
+            <div className={styles["business-header__map"]}>
+              <MapView mapOptions={mapOptions}>
+                <MapMarker
+                  markerOptions={{
+                    icon: content.markerIcon,
+                  }}
+                />
+              </MapView>
+            </div>
           </Grid.Col>
           <Grid.Col lg={8}>
             <Typography.Headline1>{content.title}</Typography.Headline1>
