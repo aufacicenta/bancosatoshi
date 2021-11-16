@@ -1,11 +1,12 @@
 import clsx from "clsx";
+import { Field } from "react-final-form";
 
 import { TextInputProps } from "./TextInput.types";
 import styles from "./TextInput.module.scss";
 
-export const TextInput: React.FC<TextInputProps> = ({ className, id, labelProps, ...props }) => (
+export const TextInput: React.FC<TextInputProps> = ({ className, id, labelProps, type, ...props }) => (
   <div className={clsx(styles["text-input"], "input-field", className)}>
-    <input id={id} type="text" className={clsx(styles["text-input"], "validate")} {...props} />
+    <Field id={id} name={id} component="input" type={type} className={clsx(styles["text-input"], "validate")} />
     {props.label && <label htmlFor={id}>{props.label}</label>}
   </div>
 );

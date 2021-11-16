@@ -404,7 +404,7 @@ $HALF_LOADER_SIZE: 15px;
     width: $LOADER_SIZE;
     height: $LOADER_SIZE;
     border: $space-xxs solid transparent;
-    border-top: $space-xxs solid var(--color-white);
+    border-top: $space-xxs solid var(--color-primary);
     border-radius: $border-radius-circle;
     animation: spin 2s linear infinite;
   }
@@ -415,7 +415,7 @@ $HALF_LOADER_SIZE: 15px;
     left: calc(50% - #{$HALF_LOADER_SIZE});
     width: $LOADER_SIZE;
     height: $LOADER_SIZE;
-    border: $space-xxs solid var(--color-white);
+    border: $space-xxs solid var(--color-button-primary-text);
     border-radius: $border-radius-circle;
     opacity: 0.2;
   }
@@ -454,7 +454,7 @@ $HALF_LOADER_SIZE: 15px;
       background-color: var(--color-white);
 
       .button__loader {
-        border-color: var(--color-dark-1);
+        border-color: var(--color-primary);
       }
     }
 
