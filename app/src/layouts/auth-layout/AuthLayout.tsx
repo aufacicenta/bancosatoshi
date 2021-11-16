@@ -1,8 +1,6 @@
 import clsx from "clsx";
-import { useTranslation } from "react-i18next";
 
 import { AuthContextController } from "context/auth/AuthContextController";
-import { useRoutes } from "hooks/useRoutes/useRoutes";
 import { MainPanel } from "ui/mainpanel/MainPanel";
 import { NavBar } from "ui/navbar/NavBar";
 
