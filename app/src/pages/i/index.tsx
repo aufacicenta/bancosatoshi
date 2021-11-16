@@ -1,6 +1,7 @@
+import { NextPage } from "next";
+
 import { AppLayout } from "layouts/app-layout/AppLayout";
 import { AuthLayout } from "layouts/auth-layout/AuthLayout";
-import { NextPage } from "next";
 
 const Businesses: NextPage = () => (
   <AppLayout>
