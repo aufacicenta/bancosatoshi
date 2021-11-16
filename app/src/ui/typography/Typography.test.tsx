@@ -1,14 +1,12 @@
-import { screen, render } from 'tests';
+import { screen, render } from "tests";
 
-import { Typography } from './Typography';
+import { Typography } from "./Typography";
 
-describe('Typography', () => {
-  it('renders children correctly', () => {
-    render(
-      <Typography>Typography</Typography>,
-    );
+describe("Typography", () => {
+  it("renders children correctly", () => {
+    render(<Typography>Typography</Typography>);
 
-    const element = screen.getByText('Typography');
+    const element = screen.getByText("Typography");
 
     expect(element).toBeInTheDocument();
   });

@@ -1,14 +1,12 @@
-import { screen, render } from 'tests';
+import { screen, render } from "tests";
 
-import { InvestNowWidget } from './InvestNowWidget';
+import { InvestNowWidget } from "./InvestNowWidget";
 
-describe('InvestNowWidget', () => {
-  it('renders children correctly', () => {
-    render(
-      <InvestNowWidget>InvestNowWidget</InvestNowWidget>,
-    );
+describe("InvestNowWidget", () => {
+  it("renders children correctly", () => {
+    render(<InvestNowWidget>InvestNowWidget</InvestNowWidget>);
 
-    const element = screen.getByText('InvestNowWidget');
+    const element = screen.getByText("InvestNowWidget");
 
     expect(element).toBeInTheDocument();
   });

@@ -9,7 +9,7 @@ export const useLocalStorage = () => {
     const value = JSON.parse(localStorage.getItem(key) || type);
 
     if (Array.isArray(value)) {
-      return (value as unknown) as T;
+      return value as unknown as T;
     }
 
     if (typeof value === "object") {

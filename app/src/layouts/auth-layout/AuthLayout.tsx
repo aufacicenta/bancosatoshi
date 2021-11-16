@@ -1,10 +1,9 @@
 import clsx from "clsx";
 import { useTranslation } from "react-i18next";
 
-import { useRoutes } from "../../hooks/useRoutes/useRoutes";
-import { MainPanel } from "../../ui/mainpanel/MainPanel";
-import { NavBar } from "../../ui/navbar/NavBar";
-import { Typography } from "../../ui/typography/Typography";
+import { useRoutes } from "hooks/useRoutes/useRoutes";
+import { MainPanel } from "ui/mainpanel/MainPanel";
+import { NavBar } from "ui/navbar/NavBar";
 
 import styles from "./AuthLayout.module.scss";
 import { AuthLayoutProps } from "./AuthLayout.types";

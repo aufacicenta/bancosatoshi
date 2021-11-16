@@ -1,6 +1,8 @@
 import clsx from "clsx";
 import { useEffect, useState } from "react";
+
 import { useTabContext } from "../../../hooks/useTabContext/useTabContext";
+
 import styles from "./Pane.module.scss";
 import { PaneProps } from "./Pane.types";
 
@@ -18,8 +20,8 @@ export const Pane: React.FC<PaneProps> = ({ children, className, id }) => {
 
   return (
     <div
-      className={clsx(styles["pane"], className, {
-        [styles["pane__active"]]: isActive,
+      className={clsx(styles.pane, className, {
+        [styles.pane__active]: isActive,
       })}
     >
       {children}

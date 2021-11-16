@@ -1,8 +1,6 @@
 import clsx from "clsx";
-import dynamic from "next/dynamic";
 
 import { Form } from "../Form";
-import { Card } from "../../card/Card";
 import { Button } from "../../button/Button";
 
 import styles from "./AuthEmailForm.module.scss";

@@ -1,6 +1,8 @@
 import clsx from "clsx";
+
 import { IconButton } from "../../iconButton/IconButton";
 import { CloseIcon } from "../../icons/CloseIcon";
+
 import styles from "./CloseButton.module.scss";
 import { CloseButtonProps } from "./CloseButton.types";
 

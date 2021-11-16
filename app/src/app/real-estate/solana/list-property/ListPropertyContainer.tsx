@@ -1,5 +1,3 @@
 import { ListProperty } from "./ListProperty";
 
-export const ListPropertyContainer = () => {
-  return <ListProperty />;
-};
+export const ListPropertyContainer = () => <ListProperty />;

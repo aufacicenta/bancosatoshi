@@ -1,14 +1,12 @@
-import { screen, render } from 'tests';
+import { screen, render } from "tests";
 
-import { Form } from './Form';
+import { Form } from "./Form";
 
-describe('Form', () => {
-  it('renders children correctly', () => {
-    render(
-      <Form>Form</Form>,
-    );
+describe("Form", () => {
+  it("renders children correctly", () => {
+    render(<Form>Form</Form>);
 
-    const element = screen.getByText('Form');
+    const element = screen.getByText("Form");
 
     expect(element).toBeInTheDocument();
   });

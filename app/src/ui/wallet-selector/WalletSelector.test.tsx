@@ -1,14 +1,12 @@
-import { screen, render } from 'tests';
+import { screen, render } from "tests";
 
-import { WalletSelector } from './WalletSelector';
+import { WalletSelector } from "./WalletSelector";
 
-describe('WalletSelector', () => {
-  it('renders children correctly', () => {
-    render(
-      <WalletSelector>WalletSelector</WalletSelector>,
-    );
+describe("WalletSelector", () => {
+  it("renders children correctly", () => {
+    render(<WalletSelector>WalletSelector</WalletSelector>);
 
-    const element = screen.getByText('WalletSelector');
+    const element = screen.getByText("WalletSelector");
 
     expect(element).toBeInTheDocument();
   });

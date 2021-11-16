@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import { CircularProgressProps } from "./CircularProgress.types";
 
 export const CircularProgress: React.FC<CircularProgressProps> = ({

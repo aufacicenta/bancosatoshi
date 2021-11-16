@@ -1,11 +1,13 @@
 import { useRouter } from "next/router";
+
 import { Grid } from "../../grid/Grid";
 import { CloseIcon } from "../../icons/CloseIcon";
 import { Typography } from "../../typography/Typography";
+
 import styles from "./ModalNavbar.module.scss";
 import { ModalNavbarProps } from "./ModalNavbar.types";
 
-export const ModalNavbar: React.FC<ModalNavbarProps> = ({ children, className, title }) => {
+export const ModalNavbar: React.FC<ModalNavbarProps> = ({ children, title }) => {
   const { back } = useRouter();
 
   return (

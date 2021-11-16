@@ -1,14 +1,12 @@
-import { screen, render } from 'tests';
+import { screen, render } from "tests";
 
-import { ListProperty } from './ListProperty';
+import { ListProperty } from "./ListProperty";
 
-describe('ListProperty', () => {
-  it('renders children correctly', () => {
-    render(
-      <ListProperty>ListProperty</ListProperty>,
-    );
+describe("ListProperty", () => {
+  it("renders children correctly", () => {
+    render(<ListProperty>ListProperty</ListProperty>);
 
-    const element = screen.getByText('ListProperty');
+    const element = screen.getByText("ListProperty");
 
     expect(element).toBeInTheDocument();
   });

@@ -1,14 +1,12 @@
-import { screen, render } from 'tests';
+import { screen, render } from "tests";
 
-import { Tooltip } from './Tooltip';
+import { Tooltip } from "./Tooltip";
 
-describe('Tooltip', () => {
-  it('renders children correctly', () => {
-    render(
-      <Tooltip>Tooltip</Tooltip>,
-    );
+describe("Tooltip", () => {
+  it("renders children correctly", () => {
+    render(<Tooltip>Tooltip</Tooltip>);
 
-    const element = screen.getByText('Tooltip');
+    const element = screen.getByText("Tooltip");
 
     expect(element).toBeInTheDocument();
   });
