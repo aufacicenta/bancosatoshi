@@ -31,6 +31,7 @@
   "devDependencies": {
     "@googlemaps/typescript-guards": "^1.0.1",
     "@types/google.maps": "^3.46.1",
+    "@types/lodash": "^4.14.177",
     "@types/node": "^14.14.35",
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.9",
