@@ -39,7 +39,10 @@ export const AuthContextController = ({ children }: AuthContextControllerProps) 
     try {
       setIsLoading(true);
 
-      const { error } = await supabase.auth.signIn({ email });
+      const { error } = await supabase.auth.signIn(
+        { email },
+        { redirectTo: (router.query.redirectTo as string) || routes.home },
+      );
 
       if (error) {
         throw new Error(error.message);

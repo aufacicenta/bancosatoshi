@@ -1,7 +1,7 @@
-@import "../../../theme/base";
+@import "src/theme/base";
 
 .sign-up {
-  display: block;
+  padding-top: $navbar-height;
 
   &__instructions {
     margin-bottom: $space-m;

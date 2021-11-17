@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { Container } from "react-grid-system";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 import { Card } from "ui/card/Card";
 import { Typography } from "ui/typography/Typography";
@@ -10,6 +11,7 @@ import { Icon } from "ui/icon/Icon";
 import { Tooltip } from "ui/tooltip/Tooltip";
 import { useAuthContext } from "hooks/useAuthContext/useAuthContext";
 import { useRoutes } from "hooks/useRoutes/useRoutes";
+import { useCheckoutContext } from "hooks/useCheckoutContext/useCheckoutContext";
 
 import { InvestNowWidgetProps } from "./InvestNowWidget.types";
 import styles from "./InvestNowWidget.module.scss";
@@ -18,12 +20,21 @@ export const InvestNowWidget: React.FC<InvestNowWidgetProps> = ({ className, con
   const auth = useAuthContext();
   const router = useRouter();
   const routes = useRoutes();
+  const { getCheckoutURL, checkout, isLoading: isCheckoutLoading, error: checkoutError } = useCheckoutContext();
+
+  useEffect(() => {
+    if (!checkout?.url) {
+      return;
+    }
+
+    router.push(checkout.url);
+  }, [checkout, router]);
 
   const handleOnInvestNowClick = () => {
     if (auth.hasActiveSession) {
-      // @TODO generate a BTCPayServer checkout link and redirect
+      getCheckoutURL();
     } else {
-      router.push(routes.auth.signIn);
+      router.push(`${routes.auth.signIn}?redirectTo=${process.env.NEXT_PUBLIC_BASE_URL}${router.asPath}`);
     }
   };
 
@@ -63,10 +74,17 @@ export const InvestNowWidget: React.FC<InvestNowWidgetProps> = ({ className, con
                     </Grid.Col>
                   </Grid.Row>
                 </div>
-                <Button fullWidth onClick={handleOnInvestNowClick}>
-                  Depositar BTC
-                  <Icon name="icon-power" className={styles["invest-now-widget__cta-button--icon"]} />
-                </Button>
+                <div className={styles["invest-now-widget__cta-button"]}>
+                  <Button fullWidth onClick={handleOnInvestNowClick} isLoading={isCheckoutLoading}>
+                    {auth.hasActiveSession ? "Depositar BTC" : "Ingresa y Deposita BTC"}
+                    <Icon name="icon-power" className={styles["invest-now-widget__cta-button--icon"]} />
+                  </Button>
+                  {checkoutError && (
+                    <Typography.Description className={styles["invest-now-widget__cta-button--error"]}>
+                      Algo salió mal, intenta de nuevo
+                    </Typography.Description>
+                  )}
+                </div>
                 <div className={styles["invest-now-widget__goal"]}>
                   <div>
                     <Typography.Headline4>

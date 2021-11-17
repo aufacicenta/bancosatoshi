@@ -5,11 +5,14 @@ import { BusinessDetailsContainer } from "app/business/BusinessDetails/BusinessD
 import { AppLayout } from "layouts/app-layout/AppLayout";
 import { AuthLayout } from "layouts/auth-layout/AuthLayout";
 import { BusinessDetailsProps } from "app/business/BusinessDetails/BusinessDetails.types";
+import { CheckoutContextController } from "context/checkout/CheckoutContextController";
 
 const Index: NextPage<BusinessDetailsProps> = ({ content }) => (
   <AppLayout>
     <AuthLayout>
-      <BusinessDetailsContainer content={content} />
+      <CheckoutContextController>
+        <BusinessDetailsContainer content={content} />
+      </CheckoutContextController>
     </AuthLayout>
   </AppLayout>
 );

@@ -11,8 +11,15 @@
   }
 
   &__cta-button {
+    display: block;
+
     &--icon {
       margin-left: $space-default;
+    }
+
+    &--error {
+      margin-top: $space-default;
+      color: var(--color-status-critical);
     }
   }
 
