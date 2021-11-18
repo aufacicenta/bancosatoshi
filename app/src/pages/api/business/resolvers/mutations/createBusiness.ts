@@ -1,12 +1,7 @@
-import { MutationCreateBusinessArgs } from "api/business/codegen";
 import { MutationResolvers } from "api/business/codegen/resolvers-types";
 import { client as supabase } from "src/providers/supabase/client";
 
-const createBusiness: MutationResolvers["createBusiness"] = async (
-  _,
-  { input }: MutationCreateBusinessArgs,
-  context,
-) => {
+const createBusiness: MutationResolvers["createBusiness"] = async (_, _input, context) => {
   try {
     const token = context.req.cookies["sb:token"];
 
