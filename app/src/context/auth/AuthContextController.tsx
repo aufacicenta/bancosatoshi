@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Session } from "@supabase/gotrue-js";
 import { useRouter } from "next/router";
 import { client as supabase } from "src/providers/supabase/client";
-import { useCreateBusinessMutation } from "api/business/codegen";
+import { useCreateBusinessMutation } from "api/codegen";
 
 import { useRoutes } from "hooks/useRoutes/useRoutes";
 

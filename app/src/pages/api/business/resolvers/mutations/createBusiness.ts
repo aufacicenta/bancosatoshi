@@ -1,4 +1,4 @@
-import { MutationResolvers } from "api/business/codegen/resolvers-types";
+import { MutationResolvers } from "api/codegen/resolvers-types";
 import { client as supabase } from "src/providers/supabase/client";
 
 const createBusiness: MutationResolvers["createBusiness"] = async (_, _input, context) => {

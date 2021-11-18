@@ -39,4 +39,4 @@ cache
 artifacts
 
 # GraphQL
-/src/pages/api/**/codegen
+/src/pages/api/codegen

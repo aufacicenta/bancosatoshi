@@ -3,10 +3,10 @@ import { loadTypedefsSync } from "@graphql-tools/load";
 import { GraphQLFileLoader } from "@graphql-tools/graphql-file-loader";
 import { NextApiRequest, NextApiResponse } from "next";
 import { DocumentNode } from "graphql";
+import { Resolvers } from "api/codegen/resolvers-types";
 
 import getBusinessesByUserId from "./business/resolvers/queries/getBusinessesByUserId";
 import createBusiness from "./business/resolvers/mutations/createBusiness";
-import { Resolvers } from "./business/codegen/resolvers-types";
 
 const schemas = loadTypedefsSync(`./src/pages/api/business/schema.graphql`, {
   loaders: [new GraphQLFileLoader()],

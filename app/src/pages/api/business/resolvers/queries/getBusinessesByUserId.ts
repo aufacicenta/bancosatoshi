@@ -1,5 +1,5 @@
-import { QueryGetBusinessesByUserIdArgs } from "api/business/codegen";
-import { QueryResolvers } from "api/business/codegen/resolvers-types";
+import { QueryGetBusinessesByUserIdArgs } from "api/codegen";
+import { QueryResolvers } from "api/codegen/resolvers-types";
 import { client as supabase } from "src/providers/supabase/client";
 
 const getBusinessesByUserId: QueryResolvers["getBusinessesByUserId"] = async (

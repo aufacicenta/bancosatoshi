@@ -1,0 +1,6 @@
+mutation CreateBusiness {
+  createBusiness {
+    id
+    userId
+  }
+}
