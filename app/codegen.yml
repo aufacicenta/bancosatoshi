@@ -1,5 +1,5 @@
 schema: [src/pages/api/business/*.graphql]
-documents: "src/pages/api/documents/**/!(cache).ts"
+documents: "src/pages/api/**/documents/**/!(cache).ts"
 generates:
   ./src/pages/api/business/schema.graphql:
     plugins:
