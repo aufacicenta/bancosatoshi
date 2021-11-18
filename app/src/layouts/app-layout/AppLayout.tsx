@@ -1,7 +1,9 @@
+import { ApolloProvider } from "@apollo/client";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { GQLClient } from "src/providers/graphql/client";
 
 import { AppLayoutProps } from "./AppLayout.types";
 
@@ -32,7 +34,9 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
         <link rel="preload" href="/icons/icomoon.woff" as="font" crossOrigin="" />
         <link rel="preload" href="/icons/icomoon.svg" as="font" crossOrigin="" />
       </Head>
-      <main>{children}</main>
+      <ApolloProvider client={GQLClient}>
+        <main>{children}</main>
+      </ApolloProvider>
     </>
   );
 };

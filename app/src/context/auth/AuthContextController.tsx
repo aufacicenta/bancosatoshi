@@ -1,25 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { createClient } from "@supabase/supabase-js";
 import { Session } from "@supabase/gotrue-js";
 import { useRouter } from "next/router";
+import { client as supabase } from "src/providers/supabase/client";
+import { useCreateBusinessMutation } from "api/business/codegen";
 
 import { useRoutes } from "hooks/useRoutes/useRoutes";
 
 import { AuthContext } from "./AuthContext";
 import { AuthContextControllerProps, AuthContextLoginValues } from "./AuthContext.types";
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
 export const AuthContextController = ({ children }: AuthContextControllerProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [hasActiveSession, setHasActiveSession] = useState(false);
   const [session, setSession] = useState<Session | null>(null);
 
-  const supabase = createClient(supabaseUrl!, supabaseAnonKey!);
-
   const router = useRouter();
   const routes = useRoutes();
+
+  const [createBusinessMutation] = useCreateBusinessMutation();
 
   useEffect(() => {
     const currentSession = supabase.auth.session();
@@ -29,10 +27,29 @@ export const AuthContextController = ({ children }: AuthContextControllerProps) 
       setHasActiveSession(true);
     }
 
-    supabase.auth.onAuthStateChange((_event, s) => {
+    const { data: authListener } = supabase.auth.onAuthStateChange(async (event, s) => {
       setSession(s);
       setHasActiveSession(true);
+
+      if (event === "SIGNED_IN" && s?.user?.id) {
+        try {
+          await fetch("/api/auth", {
+            method: "POST",
+            headers: new Headers({ "Content-Type": "application/json" }),
+            credentials: "same-origin",
+            body: JSON.stringify({ event, session: s }),
+          });
+
+          await createBusinessMutation();
+        } catch (error) {
+          console.error(error);
+        }
+      }
     });
+
+    return () => {
+      authListener?.unsubscribe();
+    };
   }, []);
 
   const handleLogin = async ({ email }: AuthContextLoginValues) => {

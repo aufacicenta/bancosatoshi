@@ -22,7 +22,8 @@
       "theme": ["src/theme/*"],
       "hooks/*": ["src/hooks/*"],
       "context/*": ["src/context/*"],
-      "layouts/*": ["src/layouts/*"]
+      "layouts/*": ["src/layouts/*"],
+      "api/*": ["src/pages/api/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

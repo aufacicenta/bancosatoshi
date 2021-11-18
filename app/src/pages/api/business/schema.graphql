@@ -5,10 +5,14 @@ type Business {
   userId: String!
 }
 
-input GetBusinessByUserIdInput {
+input GetBusinessesByUserIdInput {
   userId: String!
 }
 
+type Mutation {
+  createBusiness: Business!
+}
+
 type Query {
-  getBusinessByUserId(input: GetBusinessByUserIdInput): Business!
+  getBusinessesByUserId(input: GetBusinessesByUserIdInput!): [Business]!
 }
