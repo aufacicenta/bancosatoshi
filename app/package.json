@@ -10,7 +10,8 @@
     "scss:class-types": "tsm 'src/**/**/*.scss' --ignore 'src/theme/*.scss' --exportType default --nameFormat none --implementation node-sass src --logLevel silent",
     "scss:class-types:watch": "npm run scss:class-types -- --watch",
     "plop": "plop",
-    "api:codegen": "graphql-codegen --watch 'src/pages/api/**/resolvers/*.ts' --watch 'src/pages/api/**/schema.graphql'"
+    "api:codegen": "graphql-codegen --watch 'src/pages/api/**/resolvers/*.ts' --watch 'src/pages/api/**/schema.graphql'",
+    "postinstall": "npm run api:codegen"
   },
   "dependencies": {
     "@apollo/client": "^3.4.17",
