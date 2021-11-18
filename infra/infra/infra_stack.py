@@ -98,6 +98,23 @@ class InfraStack(cdk.Stack):
         eip = ec2.CfnEIP(self, "ipBTCPay")
         epi_as = ec2.CfnEIPAssociation(self, "Ec2Association", eip=eip.ref, instance_id=btcpay.instance_id)
 
+        #####################
+        # Bastion Server
+        #####################
+        # Security Group
+        sg_bastion = ec2.SecurityGroup(self, 'sgBastion', vpc=vpc, security_group_name="sgBastion")
+        sg_bastion.add_ingress_rule(ec2.Peer.any_ipv4(), ec2.Port.tcp(22))
+        sg_aurora.add_ingress_rule(sg_bastion, ec2.Port.tcp(3306))
+
+        ec2.Instance(self, 'BastionInstance',
+                    instance_type=ec2.InstanceType('t3a.nano'),
+                    key_name='bancosat',
+                    instance_name='bastion',
+                    machine_image=ec2.AmazonLinuxImage(generation=ec2.AmazonLinuxGeneration.AMAZON_LINUX_2),
+                    vpc_subnets=ec2.SubnetSelection(subnet_type=ec2.SubnetType.PUBLIC),
+                    security_group=sg_bastion,
+                    vpc=vpc)
+
         ####################
         # Privete DNS Zone
         ####################
