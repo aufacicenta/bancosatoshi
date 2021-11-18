@@ -19,7 +19,6 @@ generates:
       withComponent: true
     hooks:
       afterOneFileWrite:
-        - eslint --fix
         - prettier --write
   ./src/pages/api/business/codegen/resolvers-types.ts:
     plugins:
@@ -27,5 +26,4 @@ generates:
       - typescript-resolvers
     hooks:
       afterOneFileWrite:
-        - eslint --fix
         - prettier --write
