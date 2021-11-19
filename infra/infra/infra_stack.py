@@ -41,7 +41,7 @@ class InfraStack(cdk.Stack):
         )
 
         ####################
-        # MySQL
+        # MySQL Wordpress
         ####################
 
         # Security Group
@@ -60,6 +60,26 @@ class InfraStack(cdk.Stack):
                                     instance_type=ec2.InstanceType('t3.small'),
                                     security_groups=[sg_aurora]
                                 ))
+
+        ####################
+        # MySQL APP
+        ####################
+
+        # Security Group
+        sg_aurora_app = ec2.SecurityGroup(self, 'sgAuroraPpp', vpc=vpc, security_group_name= 'AuroraApp')
+        sg_aurora_app.add_ingress_rule(ec2.Peer.any_ipv4(), ec2.Port.tcp(3306))
+
+        # Create cluster
+        db_app = rds.DatabaseCluster(self, 'databaseApp',
+                                    engine=rds.DatabaseClusterEngine.aurora_mysql(version=rds.AuroraMysqlEngineVersion.VER_2_10_0),
+                                    cluster_identifier='db-app-cluster',
+                                    instances=1,
+                                    instance_props=rds.InstanceProps(
+                                        vpc=vpc,
+                                        vpc_subnets=ec2.SubnetSelection(subnet_type=ec2.SubnetType.PUBLIC),
+                                        instance_type=ec2.InstanceType('t3.small'),
+                                        security_groups=[sg_aurora_app]
+                                    ))
 
         #####################
         # BTCPAY Server
@@ -162,6 +182,20 @@ class InfraStack(cdk.Stack):
         route53.CnameRecord(self, 'vercelCnameRecord',
                             domain_name='cname.vercel-dns.com',
                             record_name='www',
+                            zone=public_zone,
+                            ttl=core.Duration.minutes(1))
+
+        # Database APP White Records
+        route53.CnameRecord(self, 'dbAppWriteRecord',
+                            domain_name=db_app.cluster_endpoint.hostname,
+                            record_name='db',
+                            zone=public_zone,
+                            ttl=core.Duration.minutes(1))
+
+        # Database APP Read Records
+        route53.CnameRecord(self, 'dbAppReadRecord',
+                            domain_name=db_app.cluster_read_endpoint.hostname,
+                            record_name='db-ro',
                             zone=public_zone,
                             ttl=core.Duration.minutes(1))
 
